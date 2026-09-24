@@ -2,6 +2,8 @@
 
 Repository: https://github.com/lookman999/SC-Senior-QA-Assessment
 
+[GitHub Actions assessment checks](https://github.com/lookman999/SC-Senior-QA-Assessment/actions/workflows/assessment.yml) run the required matrix on every push. The first hosted run passed all 12 required executions, TypeScript checks and framework guards; see `docs/validation-report.md` for the exact scope.
+
 A TypeScript Playwright project for the supplied Supplycart assessment. It includes the Q1 debugging review, required UI/API scenarios, reusable step definitions, page objects, API clients, security checks, a performance strategy and interview notes.
 
 **Read `docs/validation-report.md` for what was actually executed, the environment and any remaining limitations.** Defined tests are not automatically verified tests.
@@ -67,7 +69,7 @@ Do not run two Playwright processes concurrently in this folder using the same o
 | `api/`                                       | Request-context clients and runtime response contracts                            |
 | `fixtures/`, `data/`, `support/`             | Test isolation, generated data, cleanup and targeted helpers                      |
 | `performance/`                               | k6 staging template, never automatically run                                      |
-| `.github/workflows/`                         | CI template with pinned actions and cleanup                                       |
+| `.github/workflows/`                         | CI workflow with pinned actions and cleanup                                       |
 | `docs/`                                      | Review, architecture, coverage, evidence, security, performance and defense guide |
 
 ## Design choices worth explaining
