@@ -1,0 +1,48 @@
+# Security review
+
+## Scope and evidence standard
+
+This is a limited review of the supplied snippet, this automation code and selected public practice-site behavior. It is not a penetration-test certification. No application source, infrastructure access or production accounts were provided. All created users and payment values are synthetic. No brute-force, injection scanning, destructive cross-account testing or load attack was performed.
+
+## Observations
+
+| ID     | Evidence                                                                                                         | Interpretation                                                                                                                                                                                                          | Recommended production action                                                                                                                                                    |
+| ------ | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OBS01  | The assessment defines HTTP 200 even when `responseCode` is 400/404/405. Required tests confirm the distinction. | Functional contract quirk and monitoring risk. A transport-only success counter can hide failed business operations. This alone is not an authentication bypass.                                                        | Prefer appropriate HTTP status semantics in a new API; until migration, monitor and assert both layers.                                                                          |
+| OBS02  | A sampled `/api/productsList` response has `Content-Type: text/html; charset=utf-8` while containing JSON.       | Incorrect media type. JSON parsing succeeds, but clients and security controls cannot rely on the declared type. Not proof of script execution.                                                                         | Return `application/json`, preserve `nosniff`, and add a corrected contract test when the service contract changes.                                                              |
+| OBS03  | The sampled response exposes `X-Powered-By: Phusion Passenger(R) 6.1.8`.                                         | Low-severity information disclosure. A version string does not prove an exploitable CVE or patch level.                                                                                                                 | Remove unnecessary version headers and assess actual installed components separately.                                                                                            |
+| OBS04  | `X-Content-Type-Options: nosniff` and `X-Frame-Options: DENY` were observed.                                     | Positive hardening signals for the sampled response only.                                                                                                                                                               | Retain and verify relevant routes consistently; do not extrapolate to all pages.                                                                                                 |
+| OBS05  | HSTS and CSP were not present in the sampled response.                                                           | Limited header observation. Missing CSP on a JSON API has a different impact from missing CSP on executable HTML. HSTS exposure requires checking redirect behavior, preload/subdomain policies and real browser paths. | Review HTML CSP and HTTPS/HSTS centrally; do not call these proven XSS or downgrade vulnerabilities from this sample alone.                                                      |
+| RISK01 | The public API documentation lists `getUserDetailByEmail` with only an email parameter.                          | Potential unauthenticated profile disclosure if no independent authentication/authorization is enforced. The documentation alone is insufficient to claim a confirmed exploit.                                          | In an authorized environment, create owned accounts A/B and compare anonymous, A, B and admin requests; require least-privilege field exposure and server-side ownership checks. |
+
+## Executed checks and limits
+
+The validation report records which supplemental tests passed. These check generic invalid-login responses, missing parameters, no password reflection, minimal verification response fields, and form configuration. They do not prove password hashing, rate limiting, CSRF validation, XSS safety, secure cookie handling or authorization. A CSRF token being present is different from the server rejecting a forged request.
+
+## Framework review
+
+| Risk                               | Implemented control                                                                                 | Remaining limit                                                                                          |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Credentials committed to source    | Random account data, no fixed real credentials, `.env` and `.runtime` ignored                       | Git ignore is not access control; inspect staged files before push                                       |
+| Accidental production mutations    | Assessment origin guard, cleanup limited to generated email pattern                                 | Adapting to staging requires deliberate review of the guard and data policy                              |
+| TLS disabled for convenience       | `ignoreHTTPSErrors: false`; HTTPS target                                                            | Proxy trust and endpoint certificate policy depend on the execution environment                          |
+| Leaking secrets via errors         | Contract errors include paths/rules without raw response values; attachments contain summary fields | Playwright's own low-level failure output or an opt-in trace can still include request/session details   |
+| Credential-bearing redirect        | API requests disable redirects                                                                      | Browser navigation is different; an owned production suite should verify form origin and redirect policy |
+| Artifacts published from public CI | Trace off by default; no automatic report upload; no credential persistence in Git checkout         | Screenshots and local reports must still be reviewed before sharing                                      |
+| Orphaned test users                | Fixture teardown, recovery registry, cleanup command, CI final cleanup                              | A terminated/lost runner may require server-side expiry/janitor in a controlled environment              |
+| Dependency changes                 | Exact npm versions, lockfile, `npm ci`, immutable CI action revisions                               | A clean `npm audit` is only a check against reported advisories at that time                             |
+
+Recovery credentials are stored locally with mode 0600; the directory uses mode 0700 on POSIX. They exist only to delete this run's synthetic test accounts after interruption. They are removed after successful cleanup. Do not upload this folder or copy it into presentation materials.
+
+## Next security tests on an owned application
+
+1. **Authorization and tenant isolation:** A creates a PR/order; B attempts read/update/approval through direct APIs, including guessed IDs. Assert denial and unchanged server-side state. UI hiding a button is insufficient.
+2. **Approval rules:** attempt self-approval, changed role, stale approval token and repeated submission; verify authorization at the action time and audit attribution.
+3. **Session lifecycle:** session rotation at login/privilege changes, invalidation after logout/password changes, HttpOnly/Secure/SameSite cookie policy, expiry and server rejection of revoked sessions.
+4. **CSRF:** remove/tamper with the token and use a cross-site origin on an owned disposable record; expect rejection and verify no mutation.
+5. **Injection and output encoding:** controlled payloads in owned records; verify data stays literal and server-side authorization remains intact. Avoid scanning the public practice service.
+6. **Authentication abuse:** test agreed throttling/lockout and recovery limits with synthetic users; monitor false positives. Do not infer timing uniformity from two latency samples.
+7. **Sensitive data:** inspect authorized response schemas, logs and generated artifacts for secrets and unnecessary profile fields; prefer an allowlist for credential endpoints.
+8. **Dependencies and source:** code review, secret scanning, SAST and dependency advisories alongside black-box tests. Backend storage and encryption claims require direct evidence.
+
+For a confirmed finding, report affected endpoint/build, owned test data, exact reproducible request, actual versus expected behavior, impact, severity rationale and a retest. Separate confirmed observations from untested hypotheses and existing demo-specific behavior.

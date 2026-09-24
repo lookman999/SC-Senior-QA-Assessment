@@ -1,0 +1,406 @@
+{
+  "generatedFrom": "Sanitized Playwright JSON reports; request data, credentials, machine paths and failure artifacts excluded.",
+  "dateUTC": "2026-09-24",
+  "runs": [
+    {
+      "name": "required-full-recheck",
+      "stats": {
+        "startTime": "2026-09-24T16:53:44.743Z",
+        "duration": 269763.23600000003,
+        "expected": 12,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "name": "Q1 - submit form (two targeted fixes)",
+          "project": "debugging",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 912
+            }
+          ]
+        },
+        {
+          "name": "TC01 - Register User",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 23182
+            }
+          ]
+        },
+        {
+          "name": "TC02 - Login User with correct email and password",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 33473
+            }
+          ]
+        },
+        {
+          "name": "TC03 - Login User with incorrect email and password",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 30120
+            }
+          ]
+        },
+        {
+          "name": "TC15 - Place Order: Register before Checkout",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 34957
+            }
+          ]
+        },
+        {
+          "name": "API01 - Get All Products List",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 10461
+            }
+          ]
+        },
+        {
+          "name": "API03 - Get All Brands List",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 9677
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: top",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 9657
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: tshirt",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 10083
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: jean",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 9345
+            }
+          ]
+        },
+        {
+          "name": "API07 - Verify Login with valid details",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 23463
+            }
+          ]
+        },
+        {
+          "name": "API10 - Verify Login with invalid details",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 9707
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "api-live",
+      "stats": {
+        "startTime": "2026-09-24T15:58:38.545Z",
+        "duration": 125028.205,
+        "expected": 7,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "name": "API01 - Get All Products List",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 9704
+            }
+          ]
+        },
+        {
+          "name": "API03 - Get All Brands List",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 12705
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: top",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 8161
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: tshirt",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 7951
+            }
+          ]
+        },
+        {
+          "name": "API05 - Search Product: jean",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 15101
+            }
+          ]
+        },
+        {
+          "name": "API07 - Verify Login with valid details",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 30355
+            }
+          ]
+        },
+        {
+          "name": "API10 - Verify Login with invalid details",
+          "project": "api",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 10196
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ui-live",
+      "stats": {
+        "startTime": "2026-09-24T16:26:20.839Z",
+        "duration": 171398.109,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "name": "TC01 - Register User",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 28107
+            }
+          ]
+        },
+        {
+          "name": "TC02 - Login User with correct email and password",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 34601
+            }
+          ]
+        },
+        {
+          "name": "TC03 - Login User with incorrect email and password",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 22683
+            }
+          ]
+        },
+        {
+          "name": "TC15 - Place Order: Register before Checkout",
+          "project": "ui-chromium",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 38153
+            }
+          ]
+        },
+        {
+          "name": "SEC05 - login form uses HTTPS, POST, password masking and a CSRF field",
+          "project": "security-ui",
+          "outcome": "expected",
+          "attempts": [
+            {
+              "status": "passed",
+              "durationMs": 22179
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ui-initial-certificate-error",
+      "stats": {
+        "startTime": "2026-09-24T16:20:14.957Z",
+        "duration": 16636.07,
+        "expected": 0,
+        "skipped": 4,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "name": "TC01 - Register User",
+          "project": "ui-chromium",
+          "outcome": "unexpected",
+          "attempts": [
+            {
+              "status": "failed",
+              "durationMs": 13475
+            }
+          ]
+        },
+        {
+          "name": "TC02 - Login User with correct email and password",
+          "project": "ui-chromium",
+          "outcome": "skipped",
+          "attempts": []
+        },
+        {
+          "name": "TC03 - Login User with incorrect email and password",
+          "project": "ui-chromium",
+          "outcome": "skipped",
+          "attempts": []
+        },
+        {
+          "name": "TC15 - Place Order: Register before Checkout",
+          "project": "ui-chromium",
+          "outcome": "skipped",
+          "attempts": []
+        },
+        {
+          "name": "SEC05 - login form uses HTTPS, POST, password masking and a CSRF field",
+          "project": "security-ui",
+          "outcome": "skipped",
+          "attempts": []
+        }
+      ]
+    },
+    {
+      "name": "performance-observation-failed",
+      "stats": {
+        "startTime": "2026-09-24T16:24:12.278Z",
+        "duration": 28897.238,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "tests": [
+        {
+          "name": "PERF01 - five sequential catalog latency samples",
+          "project": "performance",
+          "outcome": "unexpected",
+          "attempts": [
+            {
+              "status": "failed",
+              "durationMs": 26984
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "terminalOnlyEvidence": {
+    "q1": {
+      "passed": 1,
+      "testDurationMs": 846
+    },
+    "frameworkGuards": {
+      "passed": 3
+    },
+    "securityApi": {
+      "passed": 4,
+      "note": "Individual passes recorded before the combined invocation was interrupted."
+    }
+  },
+  "notExecuted": [
+    "Firefox",
+    "WebKit",
+    "GitHub Actions",
+    "k6 load",
+    "local headed laptop demo"
+  ],
+  "unresolved": [
+    "No completed performance sample",
+    "TC15 exact published transient message differs from final confirmation",
+    "Step definitions interpreted as reusable native Given/When/Then methods"
+  ]
+}
