@@ -1,0 +1,10 @@
+test('submit form', async ({ page }) => {
+ await page.goto('https://example.com/form');
+
+await page.locator('input[type="text"]').fill('John'); //insert name
+await page.locator('button').click(); //submit the form
+
+const successMessage = page.locator('.success-message'); //toaster
+
+ await expect(successMessage).toBeVisible();
+});
