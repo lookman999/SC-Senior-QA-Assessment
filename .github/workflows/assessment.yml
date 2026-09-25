@@ -26,15 +26,6 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npx playwright install --with-deps chromium
-      - run: npm run typecheck
-      - run: npm run test:guards
-      - run: npm test
+      - run: npm run check
         env:
           CI: 'true'
-          WORKERS: '1'
-          CAPTURE_TRACE: '0'
-      - name: Recover interrupted test accounts
-        if: always()
-        run: npm run cleanup
-      # Console output is sufficient for a public submission. No automatic upload of cookies,
-      # screenshots or recovery records; inspect report contents before sharing them.

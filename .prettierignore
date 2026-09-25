@@ -1,6 +1,5 @@
 node_modules/
 playwright-report/
 test-results/
-.runtime/
 package-lock.json
-docs/verification-results.json
+tests/question-1-broken-automation-script/original-broken-script.md

@@ -1,11 +1,12 @@
 node_modules/
 playwright-report/
 test-results/
+allure-results/
+allure-report/
 blob-report/
 .env
 .env.*
 !.env.example
-.runtime/
 *.zip
 *.log
 .DS_Store
